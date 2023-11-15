@@ -3,13 +3,12 @@ import throttle from 'lodash.throttle';
 const form = document.querySelector('form.feedback-form');
 const formEmail = document.querySelector('form input');
 const formMessage = document.querySelector('form textarea');
-
-fillForm();
-
 let formData = {
   email: '',
   message: '',
 };
+fillForm();
+
 form.addEventListener('input', throttle(onFormInput, 500));
 function onFormInput(e) {
   formData[e.target.name] = e.target.value;
@@ -44,6 +43,8 @@ function fillForm() {
     const parsedFormData = JSON.parse(savedFormData);
     formEmail.value = parsedFormData.email;
     formMessage.value = parsedFormData.message;
+    formData.email = parsedFormData.email;
+    formData.message = parsedFormData.message;
   } else {
     formEmail.value = '';
     formMessage.value = '';
